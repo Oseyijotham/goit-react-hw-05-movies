@@ -5,7 +5,7 @@ import { movieDetailsFinder } from '../API/Api';
 import { movieReviewsFinder } from '../API/Api';
 import { movieCastFinder } from '../API/Api';
 import { useEffect } from 'react';
-import { lazy } from 'react';
+
 
 
 const UserContext = createContext();
