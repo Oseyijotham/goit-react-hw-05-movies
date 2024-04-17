@@ -1,16 +1,18 @@
-import { lazy } from 'react';
-import { SharedLayout } from '../SharedLayout/SharedLayout';
+import { lazy, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { SharedLayout } from '../SharedLayout/SharedLayout';
+import { useUser } from '../CustomProviderComponent/CustomProviderComponent';
+
 
 const Home = lazy(() => import('../Home/Home'));
 const Movies = lazy(() => import('../Movies/Movies'));
 const MovieDetails = lazy(() => import('../MovieDetails/MovieDetails'));
 const Cast = lazy(() => import('../Cast/Cast'));
 const Reviews = lazy(() => import('../Reviews/Reviews'));
-//const NotFound = lazy(() => import('../Reviews/Reviews'));
 
 
 export const App = () => {
+
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
@@ -24,3 +26,4 @@ export const App = () => {
     </Routes>
   );
 };
+

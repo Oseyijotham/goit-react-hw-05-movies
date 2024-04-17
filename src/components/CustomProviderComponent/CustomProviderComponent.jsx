@@ -5,6 +5,7 @@ import { movieDetailsFinder } from '../API/Api';
 import { movieReviewsFinder } from '../API/Api';
 import { movieCastFinder } from '../API/Api';
 import { useEffect } from 'react';
+import { lazy } from 'react';
 
 
 const UserContext = createContext();
@@ -22,7 +23,18 @@ export const UserProvider = ({ children }) => {
   const [filmReviews, setFilmReviews] = useState([]);
   const [filmCast, setFilmCast] = useState([]);
   const [name, setName] = useState();
+  const [HomeProm, setHome] = useState();
 
+  useEffect(() => {
+    const myprms = import('../Home/Home');
+    //console.log(myprms)
+    setHome(myprms);
+    //console.log(HomeProm);
+  }, [myMovies]);
+
+   
+
+  
   useEffect(() => {
     trendingMovies()
       .then(response => {
@@ -33,7 +45,7 @@ export const UserProvider = ({ children }) => {
       })
       .then(response => {
         setMovies([...response.results]);
-        //console.log(response);
+        //console.log(Home);
       })
       .catch(error => {
        
@@ -41,6 +53,8 @@ export const UserProvider = ({ children }) => {
         console.error(`Error message ${error}`);
       });
   }, []);
+
+  
 
      useEffect(() => {
        movieSearchFinder(filmName)
@@ -131,6 +145,7 @@ export const UserProvider = ({ children }) => {
         name,
         setFilmDetails,
         setMovieName,
+        HomeProm
       }}
     >
       {children}
