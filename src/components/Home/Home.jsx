@@ -21,7 +21,7 @@ export const Home = () => {
                   src={
                     'https://image.tmdb.org/t/p/original/' + movie.poster_path
                   }
-                  alt="Image Unavailable"
+                  alt="Unavailable"
                 />
                 <span className={css.movieName}>
                   {movie.original_title || movie.original_name}
