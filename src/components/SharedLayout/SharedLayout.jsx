@@ -1,23 +1,39 @@
 import { Outlet } from 'react-router-dom';
-import { Container, Header, Logo, Link } from './SharedLayout.styled';
+import {
+  Container,
+  Header,
+  Logo,
+  Link,
+  Icon,
+  Frame,
+  IconLabel,
+  Symbol
+} from './SharedLayout.styled';
+import svg from './icons.svg';
+import { Suspense } from 'react';
 
 export const SharedLayout = () => {
   return (
     <Container>
       <Header>
-        <Logo>
-          <span role="img" aria-label="computer icon">
-            💻
-          </span>{' '}
-          GoMerch Store
-        </Logo>
+        <Symbol to="/">
+          <Logo>
+            <Frame role="img" aria-label="computer icon">
+              <Icon width="60px" height="40px">
+                <use href={`${svg}#icon-tv`}></use>
+              </Icon>
+            </Frame>
+            <IconLabel>Cinema House</IconLabel>
+          </Logo>
+        </Symbol>
         <nav>
           <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/products">Products</Link>
+          <Link to="/movies">Movies</Link>
         </nav>
       </Header>
-      <Outlet />
+      <Suspense fallback={<div>Loading page...</div>}>
+        <Outlet />
+      </Suspense>
     </Container>
   );
 };

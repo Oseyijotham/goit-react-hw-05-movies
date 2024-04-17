@@ -2,9 +2,35 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
-  max-width: 960px;
+  background-color: #f0d1a5;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 0 16px;
+`;
+
+export const Frame = styled.span`
+  border-radius: 50%;
+  background-color: #f0d1a5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  border: 1px solid rgb(114, 17, 17);
+`;
+
+export const Icon = styled.svg`
+  fill: rgb(114, 17, 17);
+`;
+
+export const IconLabel = styled.span`
+  font-family: 'Sansita Swashed';
+  font-size: 20px;
+  color: rgb(114, 17, 17);
+
+  &::first-letter {
+    font-size: 30px;
+  }
 `;
 
 export const Header = styled.header`
@@ -12,18 +38,26 @@ export const Header = styled.header`
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 8px 0;
+  padding: 10px 0;
   margin-bottom: 16px;
-  border-bottom: 1px solid black;
+  margin-top: 16px;
+  border: 5px solid rgb(114, 17, 17);
+  background-color: rgb(216, 155, 75);
+  border-radius: 4px;
+  filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.3));
 
   > nav {
     display: flex;
+    font-family: 'Comic Sans MS';
+    padding: 10px;
   }
 `;
 
 export const Logo = styled.p`
+  margin-left: 10px;
   font-weight: 700;
-  margin: 0;
+  display: flex;
+  align-items: flex-end;
 `;
 
 export const Link = styled(NavLink)`
@@ -31,10 +65,14 @@ export const Link = styled(NavLink)`
   border-radius: 4px;
   text-decoration: none;
   color: black;
-  font-weight: 500;
+  font-weight: 700;
 
   &.active {
     color: white;
-    background-color: orangered;
+    background-color: rgb(114, 17, 17);
   }
+`;
+
+export const Symbol = styled(NavLink)`
+  text-decoration: none;
 `;
