@@ -9,7 +9,7 @@ import { Suspense } from 'react';
 
 
 export const MovieDetails = () => {
-  const { movieDetails, moviePoster, setFilmDetails, name, filmName, isLoading } = useUser();
+  const { movieDetails, moviePoster, setFilmDetails, name, filmName, isLoading,clearingFilmName } = useUser();
   const { movieId } = useParams();
   useEffect(() => {
     setFilmDetails(movieId);
@@ -19,7 +19,8 @@ export const MovieDetails = () => {
   //const location = useLocation();
   
   //const backLinkHref = location.state?.from.search ?? '/movies';
-   
+  //const flimTitle = filmName ?? '';
+
 
   return (
     <>
@@ -27,13 +28,27 @@ export const MovieDetails = () => {
         <div className={css.galleryFrame}>
           <Loader />
           <div className={css.movieDetails}>
-            <Link to={`/movies?movie=${filmName}`} className={css.previous}>
-              <span className={css.arrowBtn}>
-                <svg width="15px" height="15px">
-                  <use href={`${svg}#icon-arrow`}></use>
-                </svg>
-              </span>
-            </Link>
+            {filmName !== '' ? (
+              <Link
+                to={`/movies?movie=${filmName}`}
+                className={css.previous}
+                onClick={clearingFilmName}
+              >
+                <span className={css.arrowBtn}>
+                  <svg width="15px" height="15px">
+                    <use href={`${svg}#icon-arrow`}></use>
+                  </svg>
+                </span>
+              </Link>
+            ) : (
+              <Link to={`/movies`} className={css.previous}>
+                <span className={css.arrowBtn}>
+                  <svg width="15px" height="15px">
+                    <use href={`${svg}#icon-arrow`}></use>
+                  </svg>
+                </span>
+              </Link>
+            )}
             <div className={css.movieFrame}>
               <img src={imgLink} alt="Unavailable" className={css.movieImage} />
               <span className={css.movieName}>{name}</span>
@@ -56,8 +71,10 @@ export const MovieDetails = () => {
             </Suspense>
           </div>
         </div>
-      ) : ( isLoading === false &&
-        <div>No Details on this Movie, try another movie</div>
+      ) : (
+        isLoading === false && (
+          <div>No Details on this Movie, try another movie</div>
+        )
       )}
     </>
   );

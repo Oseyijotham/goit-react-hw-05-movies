@@ -26,6 +26,10 @@ export const UserProvider = ({ children }) => {
   const [isLoading, setLoadingStatus] = useState();
 
 
+    const clearingFilmName = () => {
+      setMovieName("")
+    };
+
   useEffect(() => {
     setLoadingStatus(true);
     trendingMovies()
@@ -149,7 +153,7 @@ export const UserProvider = ({ children }) => {
         filmName,
         setFilmDetails,
         setMovieName,
-        
+        clearingFilmName,
       }}
     >
       {children}

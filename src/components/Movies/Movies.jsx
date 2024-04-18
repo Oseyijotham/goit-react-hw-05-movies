@@ -8,11 +8,7 @@ import css from './Movies.module.css';
 
 
 export const Movies = () => {
-  const {
-    myMovies,
-    setMovieName,
-    movieResults
-  } = useUser();
+  const { myMovies, setMovieName, movieResults, isLoading } = useUser();
   //const { movie } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
   const movieName = searchParams.get('movie') ?? '';
@@ -105,7 +101,7 @@ export const Movies = () => {
             ))}
           </ul>
         ) : (
-          <div>No Movies Found</div>
+          isLoading === false && <div>No Movies Found</div>
         )}
       </div>
     </div>
