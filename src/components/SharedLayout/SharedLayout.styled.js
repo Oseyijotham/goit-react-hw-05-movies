@@ -50,6 +50,7 @@ export const Header = styled.header`
     display: flex;
     font-family: 'Comic Sans MS';
     padding: 10px;
+    gap:5px;
   }
 `;
 
@@ -66,6 +67,8 @@ export const Link = styled(NavLink)`
   text-decoration: none;
   color: black;
   font-weight: 700;
+  background-color: #f0d1a5;
+  border: 1px solid rgb(114, 17, 17);
 
   &.active {
     color: white;
@@ -75,4 +78,12 @@ export const Link = styled(NavLink)`
 
 export const Symbol = styled(NavLink)`
   text-decoration: none;
+  transition-property: transform;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: scale(1.1);
+    
+  }
 `;

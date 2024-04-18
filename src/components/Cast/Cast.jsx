@@ -3,6 +3,7 @@ import css from './Cast.module.css';
 import svg from '../SharedLayout/icons.svg';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export const Cast = () => {
   const { filmCast } = useUser();
@@ -24,6 +25,15 @@ export const Cast = () => {
       </ul>
     </div>
   );
+};
+
+Cast.propTypes = {
+  filmCast: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default Cast;

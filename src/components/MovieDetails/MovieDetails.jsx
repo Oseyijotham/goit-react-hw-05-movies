@@ -6,6 +6,7 @@ import svg from '../SharedLayout/icons.svg';
 import css from './MovieDetails.module.css';
 import { Loader } from '../MovieDetailsLoader/Loader';
 import { Suspense } from 'react';
+import PropTypes from 'prop-types';
 
 
 export const MovieDetails = () => {
@@ -24,9 +25,9 @@ export const MovieDetails = () => {
 
   return (
     <>
-      {movieDetails !== '' && moviePoster !== '' ? (
-        <div className={css.galleryFrame}>
-          <Loader />
+      <div className={css.galleryFrame}>
+        <Loader />
+        {movieDetails !== '' && moviePoster !== '' ? (
           <div className={css.movieDetails}>
             {filmName !== '' ? (
               <Link
@@ -70,14 +71,24 @@ export const MovieDetails = () => {
               <Outlet />
             </Suspense>
           </div>
-        </div>
-      ) : (
-        isLoading === false && (
-          <div>No Details on this Movie, try another movie</div>
-        )
-      )}
+        ) : (
+          isLoading === false && (
+            <div>No Details on this Movie, try another movie</div>
+          )
+        )}
+      </div>
     </>
   );
+};
+
+MovieDetails.propTypes = {
+  movieDetails: PropTypes.string.isRequired,
+  moviePoster: PropTypes.string.isRequired,
+  setFilmDetails: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  filmName: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  clearingFilmName: PropTypes.func.isRequired,
 };
 
 export default MovieDetails;

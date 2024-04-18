@@ -3,6 +3,7 @@ import css from './Reviews.module.css';
 import svg from '../SharedLayout/icons.svg';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export const Reviews = () => {
   const { filmReviews } = useUser();
@@ -31,6 +32,10 @@ export const Reviews = () => {
       )}
     </div>
   );
+};
+
+Reviews.propTypes = {
+  filmReviews: PropTypes.array.isRequired,
 };
 
 export default Reviews;

@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Loader } from '../Loader/Loader';
+import PropTypes from 'prop-types';
 import css from './Movies.module.css';
 
 
@@ -106,6 +107,13 @@ export const Movies = () => {
       </div>
     </div>
   );
+};
+
+Movies.propTypes = {
+  myMovies: PropTypes.array.isRequired,
+  setMovieName: PropTypes.func.isRequired,
+  movieResults: PropTypes.array.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default Movies;

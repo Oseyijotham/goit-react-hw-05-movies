@@ -2,6 +2,7 @@ import { useUser } from '../CustomProviderComponent/CustomProviderComponent';
 import css from './Home.module.css';
 import { Link } from 'react-router-dom';
 import { Loader } from '../Loader/Loader';
+import PropTypes from 'prop-types';
 
 export const Home = () => {
    const { myMovies } = useUser();
@@ -37,6 +38,17 @@ export const Home = () => {
         </div>
       </main>
     );
+};
+
+Home.propTypes = {
+  myMovies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      poster_path: PropTypes.string.isRequired,
+      original_title: PropTypes.string,
+      original_name: PropTypes.string,
+    })
+  ).isRequired,
 };
 
 export default Home;
