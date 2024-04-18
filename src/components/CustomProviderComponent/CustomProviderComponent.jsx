@@ -44,7 +44,7 @@ export const UserProvider = ({ children }) => {
       })
       .catch(error => {
        
-        
+        setLoadingStatus(false);
         console.error(`Error message ${error}`);
       });
   }, []);
@@ -64,6 +64,7 @@ export const UserProvider = ({ children }) => {
            //console.log(response.results);
          })
          .catch(error => {
+           setLoadingStatus(false);
            console.error(`Error message ${error}`);
          });
      }, [filmName]);
@@ -91,6 +92,7 @@ export const UserProvider = ({ children }) => {
          //console.log(response);
        })
        .catch(error => {
+         setLoadingStatus(false);
          console.error(`Error message ${error}`);
        });
   }, [filmId]);

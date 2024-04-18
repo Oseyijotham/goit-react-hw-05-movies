@@ -2,7 +2,6 @@ import { useParams } from 'react-router-dom';
 import { useUser } from '../CustomProviderComponent/CustomProviderComponent';
 import { useEffect } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
 import svg from '../SharedLayout/icons.svg';
 import css from './MovieDetails.module.css';
 import { Loader } from '../MovieDetailsLoader/Loader';
@@ -10,7 +9,7 @@ import { Suspense } from 'react';
 
 
 export const MovieDetails = () => {
-  const { movieDetails, moviePoster, setFilmDetails, name, filmName } = useUser();
+  const { movieDetails, moviePoster, setFilmDetails, name, filmName, isLoading } = useUser();
   const { movieId } = useParams();
   useEffect(() => {
     setFilmDetails(movieId);
@@ -57,7 +56,7 @@ export const MovieDetails = () => {
             </Suspense>
           </div>
         </div>
-      ) : (
+      ) : ( isLoading === false &&
         <div>No Details on this Movie, try another movie</div>
       )}
     </>
