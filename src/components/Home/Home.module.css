@@ -20,6 +20,7 @@
   border-radius: 4px;
   box-shadow: 0 0.3em 1em #000;
   border: 5px solid rgb(114, 17, 17);
+  
 }
 
 .movieInfo {
@@ -47,7 +48,6 @@
 
 .movieItem {
   width:300px;
-  position: relative;
   background-color: #f0d1a5;
   border: 3px solid rgb(114, 17, 17);
   color: rgb(114, 17, 17);
@@ -66,4 +66,11 @@
   transform: scale(1.03);
   box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.3),
     0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 10px 12px -6px rgba(0, 0, 0, 0.4);
+}
+
+.galleryFrame{
+  position: relative;
+  max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
 }

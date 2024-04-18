@@ -10,7 +10,6 @@
   justify-content: center;
   max-width: 1000px;
   margin: 20px auto;
-  position: relative;
 }
 
 .movieFrame {
@@ -73,6 +72,7 @@
 .movieName {
   display: block;
   padding: 5px;
+  text-align: center;
 }
 
 .arrowBtn {
@@ -85,8 +85,15 @@
   background-color: #f0d1a5;
   fill: rgb(114, 17, 17);
   position: absolute;
-  top: 5px;
-  left: 5px;
+  top: 10px;
+  left: 10px;
   cursor: pointer;
   border: 2px solid rgb(114, 17, 17);
+}
+
+.galleryFrame {
+  position: relative;
+  max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
 }

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { Loader } from '../Loader/Loader';
 import css from './Movies.module.css';
 
 
@@ -48,61 +49,65 @@ export const Movies = () => {
           </button>
         </form>
       </header>
-
-      <ul className={css.movieGallery}>
+      <div className={css.galleryFrame}>
+        <Loader />
         {myMovies.length !== 0 &&
         movieResults.length === 0 &&
         movieName === '' ? (
-          myMovies.map(movie => (
-            <li key={movie.id} name={movie.id} className={css.movieItem}>
-              <Link
-                to={`${movie.id}`}
-                name={movie.id}
-                className={css.movieInfo}
-                state={{ from: location }}
-              >
-                <img
-                  className={css.movieImage}
-                  src={
-                    'https://image.tmdb.org/t/p/original/' + movie.poster_path
-                  }
-                  alt="Unavailable"
-                />
-                <span className={css.movieName}>
-                  {movie.original_title || movie.original_name}
-                </span>
-              </Link>
-            </li>
-          ))
+          <ul className={css.movieGallery}>
+            {myMovies.map(movie => (
+              <li key={movie.id} name={movie.id} className={css.movieItem}>
+                <Link
+                  to={`${movie.id}`}
+                  name={movie.id}
+                  className={css.movieInfo}
+                  state={{ from: location }}
+                >
+                  <img
+                    className={css.movieImage}
+                    src={
+                      'https://image.tmdb.org/t/p/original/' + movie.poster_path
+                    }
+                    alt="Unavailable"
+                  />
+                  <span className={css.movieName}>
+                    {movie.original_title || movie.original_name}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         ) : movieName !== '' &&
           movieResults.length !== 0 &&
           myMovies.length !== 0 ? (
-          movieResults.map(movie => (
-            <li key={movie.id} className={css.movieItem}>
-              <Link
-                to={`${movie.id}`}
-                name={movie.id}
-                className={css.movieInfo}
-                state={{ from: location }}
-              >
-                <img
-                  className={css.movieImage}
-                  src={
-                    'https://image.tmdb.org/t/p/original/' + movie.poster_path
-                  }
-                  alt="Unavailable"
-                />
+          <ul className={css.movieGallery}>
+            {movieResults.map(movie => (
+              <li key={movie.id} className={css.movieItem}>
+                <Link
+                  to={`${movie.id}`}
+                  name={movie.id}
+                  className={css.movieInfo}
+                  state={{ from: location }}
+                >
+                  <img
+                    className={css.movieImage}
+                    src={
+                      'https://image.tmdb.org/t/p/original/' + movie.poster_path
+                    }
+                    alt="Unavailable"
+                  />
 
-                <span className={css.movieName}>
-                  {movie.original_title || movie.original_name}
-                </span>
-              </Link>
-            </li>
-          ))
+                  <span className={css.movieName}>
+                    {movie.original_title || movie.original_name}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         ) : (
           <div>No Movies Found</div>
         )}
-      </ul>
+      </div>
     </div>
   );
 };

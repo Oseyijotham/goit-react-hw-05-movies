@@ -23,19 +23,11 @@ export const UserProvider = ({ children }) => {
   const [filmReviews, setFilmReviews] = useState([]);
   const [filmCast, setFilmCast] = useState([]);
   const [name, setName] = useState();
-  const [HomeProm, setHome] = useState();
+  const [isLoading, setLoadingStatus] = useState();
+
 
   useEffect(() => {
-    const myprms = import('../Home/Home');
-    //console.log(myprms)
-    setHome(myprms);
-    //console.log(HomeProm);
-  }, [myMovies]);
-
-   
-
-  
-  useEffect(() => {
+    setLoadingStatus(true);
     trendingMovies()
       .then(response => {
         if (!response.ok) {
@@ -45,6 +37,9 @@ export const UserProvider = ({ children }) => {
       })
       .then(response => {
         setMovies([...response.results]);
+        
+          setLoadingStatus(false);
+        
         //console.log(Home);
       })
       .catch(error => {
@@ -56,12 +51,16 @@ export const UserProvider = ({ children }) => {
 
   
 
-     useEffect(() => {
+  useEffect(() => {
+       setLoadingStatus(true);
        movieSearchFinder(filmName)
          .then(response => response.json()
          )
          .then(response => {
            setMovieResults([...response.results]);
+            
+              setLoadingStatus(false);
+            
            //console.log(response.results);
          })
          .catch(error => {
@@ -73,11 +72,11 @@ export const UserProvider = ({ children }) => {
     useEffect(() => {
         setDetails("");
         setPoster("");
+        setLoadingStatus(true);
      movieDetailsFinder(filmId)
          .then(response => {
             if (!response.ok) {
-              /*loaderMsg.classList.add('hide');
-            errorMsg.classList.remove('hide');*/
+              
               throw new Error(`HTTP error! Status: ${response.status}`);
             }
             return response.json();
@@ -86,6 +85,9 @@ export const UserProvider = ({ children }) => {
          setDetails(response.overview);
          setPoster(response.poster_path);
          setName(response.title);
+         
+           setLoadingStatus(false);
+         
          //console.log(response);
        })
        .catch(error => {
@@ -97,8 +99,7 @@ export const UserProvider = ({ children }) => {
       movieReviewsFinder(filmId)
         .then(response => {
           if (!response.ok) {
-            /*loaderMsg.classList.add('hide');
-            errorMsg.classList.remove('hide');*/
+            
             throw new Error(`HTTP error! Status: ${response.status}`);
           }
           return response.json();
@@ -116,15 +117,14 @@ export const UserProvider = ({ children }) => {
        movieCastFinder(filmId)
          .then(response => {
            if (!response.ok) {
-             /*loaderMsg.classList.add('hide');
-            errorMsg.classList.remove('hide');*/
+             
              throw new Error(`HTTP error! Status: ${response.status}`);
            }
            return response.json();
          })
          .then(response => {
            setFilmCast([...response.cast]);
-           console.log(response.cast);
+           //console.log(response.cast);
          })
          .catch(error => {
            console.error(`Error message ${error}`);
@@ -143,9 +143,11 @@ export const UserProvider = ({ children }) => {
         filmCast,
         movieResults,
         name,
+        isLoading,
+        filmName,
         setFilmDetails,
         setMovieName,
-        HomeProm
+        
       }}
     >
       {children}
