@@ -29,7 +29,7 @@ export const MovieDetails = () => {
         <Loader />
         {movieDetails !== '' && moviePoster !== '' ? (
           <div className={css.movieDetails}>
-            {filmName !== '' ? (
+            {filmName !== '%20' ? (
               <Link
                 to={`/movies?movie=${filmName}`}
                 className={css.previous}
