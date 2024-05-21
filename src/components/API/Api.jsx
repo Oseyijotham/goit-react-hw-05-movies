@@ -1,12 +1,15 @@
 export async function trendingMovies() {
-  return fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US', {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0NTU0MGFlYTM1ZmViOTNmMzZlZjEyZTQ0Mjc2ZDkyMSIsInN1YiI6IjY2MWE0ZTJhNTE0YzRhMDE2MzY2ZDE4MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GoYIGVKFRH8QrQCy99ufoxaJxcI8rpAUjpvg-4VUxN8',
-    },
-  });
+  return fetch(
+    'https://api.themoviedb.org/3/trending/movie/day?language=en-US',
+    {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization:
+          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0NTU0MGFlYTM1ZmViOTNmMzZlZjEyZTQ0Mjc2ZDkyMSIsInN1YiI6IjY2MWE0ZTJhNTE0YzRhMDE2MzY2ZDE4MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GoYIGVKFRH8QrQCy99ufoxaJxcI8rpAUjpvg-4VUxN8',
+      },
+    }
+  );
 }
 
 export async function movieSearchFinder(movie) {
